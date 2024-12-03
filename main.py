@@ -2,7 +2,6 @@ import sys
 
 from random import randint
 from PyQt6 import uic  # Импортируем uic
-from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPainter, QColor, QBrush, QPen
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
@@ -13,6 +12,7 @@ class MyWidget(QMainWindow):
         uic.loadUi('UI.ui', self)
         self.do_paint = False
         self.button.clicked.connect(self.paint)
+        self.setFixedSize(self.width(), self.height())
         # Обратите внимание: имя элемента такое же как в QTDesigner
 
     def paintEvent(self, event):
@@ -28,8 +28,9 @@ class MyWidget(QMainWindow):
         self.update()
 
     def circle(self, qp):
-        qp.setPen(QPen(QColor('yellow')))
-        qp.setBrush(QBrush(QColor('yellow')))
+        color = (randint(0, 255), randint(0, 255), randint(0, 255))
+        qp.setPen(QPen(QColor(*color)))
+        qp.setBrush(QBrush(QColor(*color)))
         x = randint(0, 399)
         y = randint(50, 449)
         radius = randint(1, min(400 - x, 450 - y))
