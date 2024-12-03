@@ -4,9 +4,10 @@ from random import randint
 from PyQt6 import uic  # Импортируем uic
 from PyQt6.QtGui import QPainter, QColor, QBrush, QPen
 from PyQt6.QtWidgets import QApplication, QMainWindow
+from UI import Ui_Form
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_Form):
     def __init__(self):
         super().__init__()
         uic.loadUi('UI.ui', self)
